@@ -1,6 +1,7 @@
 <div id="recently_viewed_container" data-hook></div>
 <script>
-  $(document).ready(function(){
-    Spree.fetch_recently_viewed_products('<%= @product.try(:id) %>');
+  $(document).on( "turbolinks:load", function(){
+      if (typeof(Spree) === "undefined" || typeof(Spree.fetch_recently_viewed_products) === "undefined") return;
+      Spree.fetch_recently_viewed_products('<%= @product.try(:id) %>');
   });
 </script>
